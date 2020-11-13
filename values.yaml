@@ -1,0 +1,10 @@
+replicaCount: 2
+namespace: gsk-dev
+
+image:
+   repo: 
+   tag:
+   pullPolicy: IfNotPresent
+
+selectors:
+   appName: gsk
