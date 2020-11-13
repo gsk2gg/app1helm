@@ -25,7 +25,7 @@ spec:
 #          claimName: pvc-hostpath
       containers: 
       - name: "{{ .Values.namespace }}"
-        image: "{{ .Values.image.repo }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.repo }}/{{ .Values.image.tag }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         volumeMounts: 
 #        - mountPath: "/usr/local/apache2/htdocs/"

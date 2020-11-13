@@ -2,8 +2,8 @@ replicaCount: 2
 namespace: gsk-dev
 
 image:
-   repo: 
-   tag:
+   repo: jboss 
+   tag: wildfly
    pullPolicy: IfNotPresent
 
 selectors:
