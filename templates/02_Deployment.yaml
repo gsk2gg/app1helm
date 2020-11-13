@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata: 
+  name: app1helm
+  labels: 
+    client: gsk
+    type: dev
+  annotations: 
+    prodsupport: support@gsk2gg.com
+    supportnumber: "9876543210"
+    githubrepo: "https://github.com/gsk2gg/app1helm.git"
+    
+spec: 
+  replicas: {{ .Values.replicaCount }}
+  template: 
+    metadata: 
+      name: {{ .Values.namespace }}
+      labels:
+        client: {{ .Values.selectors.appName }}
+    spec: 
+#      volumes: 
+#      - name: ht-docs
+#        persistentVolumeClaim: 
+#          claimName: pvc-hostpath
+      containers: 
+      - name: "{{ .Values.namespace }}"
+        image: "{{ .Values.image.repo }}:{{ .Values.image.tag }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        volumeMounts: 
+#        - mountPath: "/usr/local/apache2/htdocs/"
+#          name: ht-docs
+        resources: 
+          requests:
+            memory: "64Mi"
+            cpu: "125m"
+          limits: 
+            memory: "96Mi"
+            cpu: "200m"
+      tolerations: 
+      - key: "size"
+        operator: "Equal"
+        value: "heavy"
+        effect: "NoSchedule"
+#      nodeSelector: 
+#        bu: cde
+  selector: 
+    matchLabels: 
+      client: gsk
